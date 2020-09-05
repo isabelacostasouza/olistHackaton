@@ -1,0 +1,39 @@
+/* eslint-disable strict, no-unused-vars */
+/* globals user, BEAMER_ID */
+var beamer_config = ((function () {
+  var beamerNotificationElements = document.querySelectorAll('[data-beamer-notification]');
+  var beamerCountElement = document.querySelector('[data-beamer-count]');
+
+  var showBeamerNotification = function (newFeaturesCount) {
+    var shouldShowNotification = newFeaturesCount
+      && beamerCountElement
+      && beamerNotificationElements.length;
+
+    if (shouldShowNotification) {
+      beamerCountElement.innerHTML = newFeaturesCount;
+
+      beamerNotificationElements.forEach(function (element) {
+        element.style.display = 'block';
+      });
+    }
+  };
+
+  var hideBeamerNotification = function () {
+    if (beamerNotificationElements.length) {
+      beamerNotificationElements.forEach(function (element) {
+        element.style.display = 'none';
+      });
+    }
+  };
+
+  return {
+    product_id: BEAMER_ID,
+    selector: '.beamerTrigger',
+    counter: false,
+    display: 'right',
+    user_firstname: user.username,
+    user_email: user.email,
+    callback: showBeamerNotification,
+    onclose: hideBeamerNotification
+  };
+})());

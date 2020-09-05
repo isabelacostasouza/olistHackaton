@@ -1,0 +1,416 @@
+
+
+(function(globals) {
+
+  var django = globals.django || (globals.django = {});
+
+  
+  django.pluralidx = function(n) {
+    var v=(n > 1);
+    if (typeof(v) == 'boolean') {
+      return v ? 1 : 0;
+    } else {
+      return v;
+    }
+  };
+  
+
+  /* gettext library */
+
+  django.catalog = django.catalog || {};
+  
+  var newcatalog = {
+    "${path} should be a between ${arg0}${arg2} and ${arg1}${arg2}": "${path} deve ser um valor entre ${arg0}${arg2} e ${arg1}${arg2}",
+    "${path} should be a greater than or equal ${arg0}${arg1}": "${path} deve ser um valor maior ou igual a ${arg0}${arg1}",
+    "${path} should be greater or equal than ${arg0}": "${path} deve ser maior ou igual a ${arg0}",
+    "${path} should be greater than ${arg0}": "${path} deve ser maior que ${arg0}",
+    "%s fix pending": [
+      "%s corre\u00e7\u00e3o pendente",
+      "%s corre\u00e7\u00f5es pendentes"
+    ],
+    "%s order selected for %s": [
+      "%s pedido selecionado para %s",
+      "%s pedidos selecionados para  %s"
+    ],
+    "%s product found": [
+      "%s produto encontrado",
+      "%s produtos encontrados"
+    ],
+    "A Unknown error occurred, please try again": "Um erro inesperado aconteceu, por favor tente novamente",
+    "A valid ${path} should contains only digits.": "Um ${path} v\u00e1lido deve conter apenas n\u00fameros.",
+    "Access the new email <span style=\"color: %s; font-weight: 600;\">%s</span> and click on the link sent to confirm the change of e-mail. If you have not clicked on": "Acesse o novo email <span style=\"color: %s; font-weight: 600;\">%s</span> e clique no link enviado para confirmar a altera\u00e7\u00e3o de email. Caso n\u00e3o tenha recebido, clique em ",
+    "Access your email": "Acesse seu email",
+    "Ad qualitiy": "Qualidade do an\u00fancio",
+    "Allowed formats: %s.": "Formatos permitidos: %s.",
+    "An Unknown error occurred, please try again": "Um erro inesperado aconteceu, por favor tente novamente",
+    "An error occurred while trying to sign the letter. Please, try again later.": "Ocorreu um problema ao assinar a carta. Por favor, tente novamente mais tarde.",
+    "Based on the stated weight, up to ${arg2} product(s) in the same package is allowed due to the maximum Correios limit of ${arg1}${arg3}.": "Com base no peso informado, \u00e9 permitido at\u00e9 ${arg2} produto(s) na mesma embalagem devido ao limite m\u00e1ximo dos Correios de ${arg1}${arg3}.",
+    "Boat representing the product measures": "Barco representando as medidas do produto",
+    "Box showing that this product is not allowed": "Caixa informando que o produto n\u00e3o \u00e9 permitido",
+    "Box showing where to find the barcode.": "Caixa mostrando onde encontrar o c\u00f3digo de barras.",
+    "Cancel": "Cancelar",
+    "Change not allowed": "Altera\u00e7\u00e3o n\u00e3o permitida",
+    "Congratulations": "Parab\u00e9ns",
+    "Could not export orders. Try again.": "N\u00e3o foi possivel exportar os pedidos. Tente novamente.",
+    "Could not load image": "N\u00e3o foi poss\u00edvel carregar a imagem",
+    "Could not undo volume merge. Try again.": "N\u00e3o foi possivel desfazer agrupamento. Tente novamente.",
+    "Create a good headline by displaying the following information: Product Name + Brand + Model + Relevant Features, ": "Crie um bom t\u00edtulo exibindo as seguintes informa\u00e7\u00f5es: Nome Do Produto + Marca + Modelo + Caracter\u00edsticas Relevantes, ",
+    "Define a new password": "definir a nova senha",
+    "Discount not permitted": "Desconto n\u00e3o permitido",
+    "During <strong>Black Friday</strong>, prices can not be increased.": "Durante a <strong>Black Friday</strong>, os pre\u00e7os n\u00e3o podem ser aumentados.",
+    "During Black Friday, prices can not be increased.": "Durante a Black Friday, os pre\u00e7os n\u00e3o podem ser aumentados.",
+    "Email changed successfully.": "Email alterado com sucesso.",
+    "Enter the brand of the product manufacturer, if it is self-made, enter the name of your brand.": "Informe a marca do fabricante do produto, caso seja fabrica\u00e7\u00e3o pr\u00f3pria, insira o nome de sua marca.",
+    "Error on send .xml file": "Erro ao enviar o arquivo .XML",
+    "Excellent!": "Excelente!",
+    "Failed to send %s: %s.": "Falha ao enviar %s: %s",
+    "Fill the required attributes for better positioning of the product in the marketplaces. Inform the maximum of details. Remember to always also enter this information at the product's description.": "Preencha os atributos para melhorar a posi\u00e7\u00e3o do produto nos marketplaces. Informe o m\u00e1ximo de detalhes. Lembre sempre de inserir essas informa\u00e7\u00f5es na descri\u00e7\u00e3o de seu produto tamb\u00e9m.",
+    "Fix the errors before continuing": "Corrija os erros antes de continuar",
+    "For legal reasons, olist is not allowed to sell products of this brand or category.": "Por motivos jur\u00eddicos, o olist n\u00e3o tem permiss\u00e3o para vender produtos dessa marca ou categoria.",
+    "Get the best placement in your channels by providing as much detail as possible about the product. To know more, ": "Tenha o melhor posicionamento nos canais informando o m\u00e1ximo de detalhes sobre o produto. Para saber mais, ",
+    "Highlight the features and describe your product in a clear, detailed and objective way to help the customer understand the benefits of the product.": "Destaque as funcionalidades e descreva seu produto de forma clara, detalhada e objetiva para ajudar o cliente a entender os benef\u00edcios do produto.",
+    "I don't have the barcode.": "N\u00e3o tenho c\u00f3digo de barras.",
+    "If you have any problem, contact us via <b>br@olist.com</b>": "Se voc\u00ea tiver algum problema, entre em contato com <b>br@olist.com</b>.",
+    "Image Uploader Thumb": "Miniatura do uploader de imagem",
+    "Image with white background.": "Imagem com fundo branco.",
+    "Inform your best selling price to increase your competitiveness.": "Informe seu melhor pre\u00e7o de venda para aumentar sua competitividade.",
+    "Insert a ${path} to continue.": "Insira um ${path} para continuar.",
+    "Insert a valid ${path}.": "Insira um ${path} v\u00e1lido.",
+    "Insert the attribute value for %s": "Insira o valor do atributo para %s",
+    "Insert the description": "Informe a descri\u00e7\u00e3o",
+    "Insert the product brand": "Informe a marca do produto",
+    "Insert the title": "Informe o t\u00edtulo",
+    "It's important to check if all automatically selected categories are coherent with your product. Check it before saving and submitting it for review.": "\u00c9 importante verificar se todas as categorias selecionadas automaticamente est\u00e3o coerentes com seu produto. Verifique antes de salvar e enviar o cadastro para revis\u00e3o.",
+    "Let the value of the freight more competitive informing when more product fits in the same packaging.": "Deixe o valor do frete mais competitivo informando quando couber mais produto na mesma embalagem.",
+    "Lower the price to the suggestion <strong>US$ %s</strong> as to make the product more competitive. <br /> The smart price is generated based on the analysis of products with a high selling volume.": "Reduza o pre\u00e7o conforme a sugest\u00e3o <strong>R$ %s</strong> para deixar o produto mais competitivo. <br /> O pre\u00e7o inteligente \u00e9 gerado com base em an\u00e1lises para aumentar o potencial de vendas.",
+    "Maximum size %(maxWidth)s x %(maxHeight)s pixel.": "Tamanho m\u00e1ximo %(maxWidth)s x %(maxHeight)s pixel.",
+    "Maximum weight %sMB.": "Peso m\u00e1ximo %sMB.",
+    "Minimum size %(minWidth)s x %(minHeight)s pixel.": "Tamanho m\u00ednimo %(minWidth)s x %(minHeight)s pixel.",
+    "Minimum value not permitted": "Valor m\u00ednimo n\u00e3o permitido",
+    "New product": "Novo Produto",
+    "No products were found.": "Nenhum produto foi encontrado",
+    "Organize the products with your internal code. The number used in your ERP, for example.": "Organize os produtos com o seu c\u00f3digo interno. O n\u00famero usado no seu ERP, por exemplo.",
+    "Paused": "Pausado",
+    "Please state the dimensions of your product <strong>ready</strong>, without considering the package.": "Informe as medidas exatas do produto <strong>pronto</strong>, sem considerar a embalagem.",
+    "Please state the dimensions of your product packed for shipping, considering the total weight of the package with the product inside.": "Informe as dimens\u00f5es do seu produto embalado para envio, considerando o peso total da embalagem com o produto dentro.",
+    "Please try changing the email again.": "Por favor, tente alterar o email novamente.",
+    "Price not permitted": "Pre\u00e7o n\u00e3o permitido",
+    "Processing...": "Processando...",
+    "Send at least one image.": "Envie ao menos uma imagem",
+    "Smart price": "Pre\u00e7o inteligente",
+    "Something went wrong while trying to resend the email. Please try again later.": "Algo deu errado enquanto tentamos reenviar o email. Por favor, tente novamente.",
+    "Something went wrong. Please try again or contact the support.": "Algo deu errado. Por favor, tente novamente ou contate o suporte.",
+    "Successfully resent email": "Email reenviado com sucesso",
+    "Symbol representing the weight measure": "Simbolo representando a medida de peso",
+    "Take advantage to be the first to register the product.": "Aproveite para ser o primeiro a cadastrar o produto.",
+    "The \"%s\" should be greater than ${arg0}": "O \"%s\" deve ser maior que ${arg0}",
+    "The barcode is located on the package or on the product itself.": "O c\u00f3digo de barras est\u00e1 localizado na embalagem ou no pr\u00f3prio produto.",
+    "The company <strong>%s</strong>, a legal entity governed by private law, registered with the CNPJ under No. <strong>%s</strong>, hereby declares that the identified protests are being treated directly with the creditor and I exempt Olist from any responsibility around these values.": "Pelo presente, a empresa <strong>%s</strong>, pessoa jur\u00eddica de direito privado, inscrita no CNPJ sob o n\u00ba <strong>%s</strong>, por meio desta Carta, declara que o(s) protesto(s) identificados em an\u00e1lise est\u00e3o sendo tratados diretamente com o(s) credor(es) e ainda, eximo o Olist de qualquer responsabilidade para com este(s) valor(es).",
+    "The competitivity of the product is high.": "A competitividade do produto est\u00e1 alta.",
+    "The description must be at least ${arg0} characters": "A descri\u00e7\u00e3o deve conter pelo menos ${arg0} caracteres",
+    "The description must contain a maximum of ${arg0} characters": "A descri\u00e7\u00e3o deve conter no m\u00e1ximo ${arg0} caracteres",
+    "The discount can't be greater than 50%.": "O desconto n\u00e3o pode ser maior do que 50%.",
+    "The email could not be changed.": "O email n\u00e3o p\u00f4de ser alterado",
+    "The invoice .xml file was not appended because it contains the following errors:": "O arquivo .xml da nota fiscal n\u00e3o foi anexado pois cont\u00e9m os seguintes erros:",
+    "The link to redefine the password was sent to <b>%s</b>": "O link para redefinir a senha foi enviado para <b>%s</b>.",
+    "The measure should be greater than 0.": "A medida deve ser maior do que 0",
+    "The prefix ${arg0} is not valid.": "O prefixo ${arg0} n\u00e3o \u00e9 v\u00e1lido.",
+    "The product brand must be up to ${arg0} words": "A marca do produto deve ter at\u00e9 ${arg0} palavras",
+    "The product is in review and that why cannot be edited.": "O produto est\u00e1 em revis\u00e3o e por isso n\u00e3o pode ser editado.",
+    "The promotional price can't be greater than the normal price.": "O pre\u00e7o promocional n\u00e3o pode ser maior do que o pre\u00e7o normal.",
+    "The smart price is generated based on the analysis of products with a high selling volume.": "O pre\u00e7o inteligente \u00e9 gerado com base em an\u00e1lises para aumentar o potencial de vendas.",
+    "The sum of the ${path} should be a between ${arg0}${arg2} and ${arg1}${arg2}": "A soma das ${path} deve ser um valor entre ${arg0}${arg2} e ${arg1}${arg2}",
+    "The sum of the ${path} should be a greater than or equal to ${arg0}${arg1}": "A soma das ${path} deve ser um valor maior que ${arg0}${arg1}",
+    "The title must be at least ${arg0} characters": "O t\u00edtulo deve conter pelo menos ${arg0} caracteres",
+    "The title must contain a maximum of ${arg0} characters": "O t\u00edtulo deve conter no m\u00e1ximo ${arg0} caracteres",
+    "The total balance may suffer variations. Some of the transactions may be processed before or after the estimated date.": "O saldo pode sofrer altera\u00e7\u00e3o. Alguns repasses podem acontecer antes ou depois da data estimada.",
+    "Try again": "Tentar novamente",
+    "US$": "R$",
+    "US$ %s": "R$ %s",
+    "Unable to generate shipment labels. Try again!": "Ocorreu um erro ao gerar as etiquetas. Tente novamente.",
+    "Upload failed": "Upload falhou",
+    "Upload has failed": "Upload falhou",
+    "Value not permitted": "Valor n\u00e3o permitido",
+    "Verify the format of the file is a valid .XML.": "Verifique se o formato do arquivo .XML \u00e9 v\u00e1lido",
+    "Volume containing all products": "Embalagem agrupada com todos produtos",
+    "Waiting invoice": "Aguardando faturamento",
+    "We found a pending involving the CNPJ.": "N\u00f3s encontramos uma pend\u00eancia envolvendo o CNPJ.",
+    "We had a problem. Try again.": "Tivemos um problema. Tente novamente.",
+    "We need you to sign the <strong>information letter</strong> below <strong>exempting olist</strong> from any liability related to the protest.": "Precisamos que voc\u00ea assine a <strong>carta informativa</strong> abaixo <strong>isentando o olist</strong> de qualquer responsabilidade relacionada ao protesto.",
+    "Whoops! Unfortunately, we couldn't list this channel's categories. Please try again later.": "Ops! Infelizmente, n\u00e3o conseguimos listar as categorias deste canal. Por favor, tente novamente mais tarde.",
+    "With the Samsung LED Smart TV J5200 you can watch videos on Youtube, Netflix and explore a variety...": "Com a TV Samsung Smart LED J5200 voc\u00ea pode assistir v\u00eddeos no Youtube, Netflix e explorar uma variedade...",
+    "You can only publish products with prices above R$ 6.00.": "Voc\u00ea s\u00f3 pode publicar produtos com pre\u00e7o maior do que R$ 6,00.",
+    "Your protest documentation was signed with success.": "Seu documento de protesto foi assinado com sucesso.",
+    "access plataform": "acessar a plataforma",
+    "add another attribute": "adicionar outro atributo",
+    "add other package": "adicionar outra embalagem",
+    "amount": "repasse",
+    "attach invoice": "anexar nota fiscal",
+    "attributes": "atributos",
+    "barcode": "c\u00f3digo de barras",
+    "better positioning": "melhor posicionamento",
+    "brand": "marca",
+    "cancel editing": "cancelar edi\u00e7\u00e3o",
+    "category": "categoria",
+    "change email": "alterar email",
+    "close": "fechar",
+    "cm": "cm",
+    "comments": "coment\u00e1rios",
+    "commission deduction": "comiss\u00e3o",
+    "competitive price": "pre\u00e7o competitivo",
+    "complementary attributes": "atributos complementares",
+    "continue": "continuar",
+    "could not update": "n\u00e3o foi poss\u00edvel atualizar",
+    "cover": "capa",
+    "create attributes": "criar atributos",
+    "create your account": "crie sua conta",
+    "current email": "email atual",
+    "description": "descri\u00e7\u00e3o",
+    "dimensions": "dimens\u00f5es",
+    "dimensions for freight calculation": "dimens\u00f5es para c\u00e1lculo de frete",
+    "do not find the product?": "n\u00e3o encontrou o produto?",
+    "download invoice": "baixar nota fiscal",
+    "e.g 100-B": "ex: 100-B",
+    "e.g Samsung, Kingston, WAP": "ex: Samsung, Kingston, WAP",
+    "e.g Smart TV LED 49\" Samsung 49J5200 Full HD": "ex: Smart TV LED 49\" Samsung 49J5200 Full HD",
+    "e.g. 123456789123": "ex: 123456789123",
+    "e.g. Blue": "ex: Azul",
+    "e.g. Color": "ex: Cor",
+    "e.g. fill the attribute value": "digite o valor do atributo",
+    "edit": "editar",
+    "enter at least 6 characters": "insira no m\u00ednimo 6 caracteres.",
+    "expected": "previsto",
+    "forbidden product": "produto proibido",
+    "freight deduction": "frete",
+    "ft": "p\u00e9s",
+    "g": "g",
+    "generate shipping labels for all orders": "gerar etiquetas de todos os pedidos",
+    "generate shipping labels for selected orders": "gerar etiquetas dos pedidos selecionados",
+    "height": "altura",
+    "identified protest": "protesto identificado",
+    "images": "imagens",
+    "import products via spreadsheet": "importar produtos via planilha",
+    "in": "pol",
+    "informations": "informa\u00e7\u00f5es",
+    "insert new email": "insira o novo email",
+    "insert password to confirm": "insira a senha para confirmar",
+    "internal code": "c\u00f3digo interno",
+    "invoiced": "faturado",
+    "kg": "kg",
+    "know more": "saiba mais",
+    "length": "comprimento",
+    "letter signed": "carta assinada",
+    "link to redefine password sent": "link para redefinir senha enviado",
+    "loading suggestion...": "carregando sugest\u00e3o...",
+    "lower it to US$ %s": "baixar para R$ %s",
+    "m": "m",
+    "measures of the product without the package": "medidas do produto sem a embalagem",
+    "month payment amount": "repasses do m\u00eas",
+    "move photo to next": "mover imagem para a pr\u00f3xima",
+    "move photo to previous": "mover imagem para a anterior",
+    "new": "novo",
+    "new email": "novo email",
+    "new password": "nova senha",
+    "new password successfully saved!": "nova senha salva com sucesso!",
+    "no expectation": "sem previs\u00e3o",
+    "optional": "opcional",
+    "or": "ou",
+    "or drag the images here": "ou arraste as imagens aqui",
+    "order amount": "opera\u00e7\u00e3o de cr\u00e9dito",
+    "order invoiced with success!": "pedido faturado com sucesso!",
+    "others": "outros",
+    "oz": "on\u00e7a",
+    "package capacity": "capacidade da embalagem",
+    "package height": "altura da embalagem",
+    "package length": "comprimento da embalagem",
+    "package measures": "medidas da embalagem",
+    "package weight": "peso total",
+    "package width": "largura da embalagem",
+    "partially invoiced": "parcialmente faturado",
+    "payday details": "detalhe dos repasses",
+    "photos": "fotos",
+    "pick the product's category": "escolha a categoria do produto",
+    "post orders": "postar pedidos",
+    "press enter to save": "pressione enter para salvar",
+    "price": "pre\u00e7o",
+    "price from": "pre\u00e7o de",
+    "price to": "pre\u00e7o por",
+    "processing labels.": "processando etiquetas.",
+    "product": [
+      "produto",
+      "produtos"
+    ],
+    "product and package weights and measures": "pesos e medidas do produto e do pacote",
+    "product brand": "marca do produto",
+    "product in revision": "produto em revis\u00e3o",
+    "product measurements packed for shipping": "medidas do produto embalado para envio",
+    "product weight": "peso do produto",
+    "products": "produtos",
+    "protest": "protesto",
+    "protest signed": "protesto assinado",
+    "received": "recebido",
+    "register new product": "cadastrar novo produto",
+    "remove photo": "remover imagem",
+    "required attributes": "atributos obrigat\u00f3rios",
+    "resend for revision": "reenviar para revis\u00e3o",
+    "resend link": "reenviar link",
+    "review categories": "revisar categorias",
+    "review team comments": "mensagem da equipe de revis\u00e3o",
+    "save": "salvar",
+    "save and continue later": "salvar e continuar depois",
+    "save cadastral data": "salvar dados cadastrais",
+    "save informations": "salvar informa\u00e7\u00f5es",
+    "select": "selecionar",
+    "select the category for your product": "selecione a categoria para o seu produto",
+    "selected category": "categoria selecionada",
+    "send for review": "enviar para revis\u00e3o",
+    "send images": "enviar imagens",
+    "set photo to cover": "tornar imagem em capa",
+    "should be greater or equal to %(minWidth)s x %(minHeight)s pixels": "deve ser maior ou igual a %(minWidth)s x %(minHeight)s pixels",
+    "should be less or equal to %(maxSizeToMB)sMB": "deve ser menor ou igual a %(maxSizeToMB)sMB",
+    "should be less or equal to %(maxWidth)s x %(maxHeight)s pixels": "deve ser menor ou igual a %(maxWidth)s x %(maxHeight)s pixels",
+    "show fewer attributes": "exibir menos atributos",
+    "show more attributes": "exibir mais atributos",
+    "show more results": "mostrar mais resultados",
+    "sign letter digitally": "assinar carta digitalmente",
+    "smart offer": "oferta inteligente",
+    "smart price": "pre\u00e7o inteligente",
+    "something is wrong with this image": "alguma coisa est\u00e1 errada com essa imagem",
+    "sort": "ordenar",
+    "start creating your access to olist platform": "comece criando seu acesso \u00e0 plataforma do olist",
+    "stock": "estoque",
+    "success": "sucesso",
+    "success image": "imagem de sucesso",
+    "suggested price": "pre\u00e7o sugerido",
+    "technical sheet": "ficha t\u00e9cnica",
+    "the packaging can contain more units of the same product": "a embalagem comporta mais unidades desse mesmo produto",
+    "this image has already been selected": "esta imagem j\u00e1 foi selecionada",
+    "this product already contains %s images": "este produto j\u00e1 possui %s imagens",
+    "this product can not be sold by olist": "o produto n\u00e3o pode ser vendido pelo olist",
+    "tip": "dica",
+    "title": "t\u00edtulo",
+    "to Olist,": "Ao Olist",
+    "total weight": "peso total",
+    "type should be \"%s\"": "formato deve ser \"%s\"",
+    "variations": "varia\u00e7\u00f5es",
+    "watch the video.": "assista ao v\u00eddeo.",
+    "width": "largura",
+    "your password": "sua senha",
+    "{file} has a invalid extension. Valid extensions: {extensions}.": "{file} tem uma extens\u00e3o inv\u00e1lida. Extens\u00f5es v\u00e1lidas: {extensions}.",
+    "{file} is too large, The maximum file size is {sizeLimit}.": "{file} \u00e9 muito grande, O tamanho m\u00e1ximo de arquivo \u00e9 {sizeLimit}."
+  };
+  for (var key in newcatalog) {
+    django.catalog[key] = newcatalog[key];
+  }
+  
+
+  if (!django.jsi18n_initialized) {
+    django.gettext = function(msgid) {
+      var value = django.catalog[msgid];
+      if (typeof(value) == 'undefined') {
+        return msgid;
+      } else {
+        return (typeof(value) == 'string') ? value : value[0];
+      }
+    };
+
+    django.ngettext = function(singular, plural, count) {
+      var value = django.catalog[singular];
+      if (typeof(value) == 'undefined') {
+        return (count == 1) ? singular : plural;
+      } else {
+        return value.constructor === Array ? value[django.pluralidx(count)] : value;
+      }
+    };
+
+    django.gettext_noop = function(msgid) { return msgid; };
+
+    django.pgettext = function(context, msgid) {
+      var value = django.gettext(context + '\x04' + msgid);
+      if (value.indexOf('\x04') != -1) {
+        value = msgid;
+      }
+      return value;
+    };
+
+    django.npgettext = function(context, singular, plural, count) {
+      var value = django.ngettext(context + '\x04' + singular, context + '\x04' + plural, count);
+      if (value.indexOf('\x04') != -1) {
+        value = django.ngettext(singular, plural, count);
+      }
+      return value;
+    };
+
+    django.interpolate = function(fmt, obj, named) {
+      if (named) {
+        return fmt.replace(/%\(\w+\)s/g, function(match){return String(obj[match.slice(2,-2)])});
+      } else {
+        return fmt.replace(/%s/g, function(match){return String(obj.shift())});
+      }
+    };
+
+
+    /* formatting library */
+
+    django.formats = {
+    "DATETIME_FORMAT": "j \\d\\e F \\d\\e Y \u00e0\\s H:i",
+    "DATETIME_INPUT_FORMATS": [
+      "%d/%m/%Y %H:%M:%S",
+      "%d/%m/%Y %H:%M:%S.%f",
+      "%d/%m/%Y %H:%M",
+      "%d/%m/%Y",
+      "%d/%m/%y %H:%M:%S",
+      "%d/%m/%y %H:%M:%S.%f",
+      "%d/%m/%y %H:%M",
+      "%d/%m/%y",
+      "%Y-%m-%d %H:%M:%S",
+      "%Y-%m-%d %H:%M:%S.%f",
+      "%Y-%m-%d %H:%M",
+      "%Y-%m-%d"
+    ],
+    "DATE_FORMAT": "j \\d\\e F \\d\\e Y",
+    "DATE_INPUT_FORMATS": [
+      "%d/%m/%Y",
+      "%d/%m/%y",
+      "%Y-%m-%d"
+    ],
+    "DECIMAL_SEPARATOR": ",",
+    "FIRST_DAY_OF_WEEK": 0,
+    "MONTH_DAY_FORMAT": "j \\d\\e F",
+    "NUMBER_GROUPING": 3,
+    "SHORT_DATETIME_FORMAT": "d/m/Y H:i",
+    "SHORT_DATE_FORMAT": "d/m/Y",
+    "THOUSAND_SEPARATOR": ".",
+    "TIME_FORMAT": "H:i",
+    "TIME_INPUT_FORMATS": [
+      "%H:%M:%S",
+      "%H:%M:%S.%f",
+      "%H:%M"
+    ],
+    "YEAR_MONTH_FORMAT": "F \\d\\e Y"
+  };
+
+    django.get_format = function(format_type) {
+      var value = django.formats[format_type];
+      if (typeof(value) == 'undefined') {
+        return format_type;
+      } else {
+        return value;
+      }
+    };
+
+    /* add to global namespace */
+    globals.pluralidx = django.pluralidx;
+    globals.gettext = django.gettext;
+    globals.ngettext = django.ngettext;
+    globals.gettext_noop = django.gettext_noop;
+    globals.pgettext = django.pgettext;
+    globals.npgettext = django.npgettext;
+    globals.interpolate = django.interpolate;
+    globals.get_format = django.get_format;
+
+    django.jsi18n_initialized = true;
+  }
+
+}(this));
+
