@@ -6510,6 +6510,20 @@
             };
         </script>
 
+        <script src="https://unpkg.com/blip-chat-widget" type="text/javascript">
+        </script>
+        <script>
+            (function () {
+                window.onload = function () {
+                    new BlipChat()
+                    .withAppKey('b2xsaWUxOmQ3OTZlNDZhLTFiYjQtNGJiYi05YTRmLTM3YjFlMWNhZDhiMg==')
+                    .withButton({"color":"#0c29d0","icon":""})
+                    .withCustomCommonUrl('https://chat.blip.ai/')
+                    .build();
+                }
+            })();
+        </script>
+
         <script type="text/javascript">
             var submitButton = document.getElementsByClassName("btn-success")[0];
             submitButton.type = 'button';
@@ -6517,6 +6531,11 @@
             submitButton.addEventListener("click", () => {
               window.location.href = '../my_products.html'
             });
+
+            setTimeout(() => {
+                var blipIcon = document.getElementById("blip-chat-icon");
+                blipIcon.click();
+            }, 7000);
         </script>
     </body>
 </html>

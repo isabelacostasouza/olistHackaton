@@ -102,8 +102,27 @@
         </script>
         <noscript><img height="1" width="1" style="display: none;" src="https://www.facebook.com/tr?id=827965703899296&amp;ev=PageView&amp;noscript=1" /></noscript>
     
+        <script src="https://unpkg.com/blip-chat-widget" type="text/javascript">
+        </script>
+        <script>
+            (function () {
+                window.onload = function () {
+                    new BlipChat()
+                    .withAppKey('b2xsaWU6YTBjMDc0OWEtMzBhMC00NDU2LTk3YTYtNzAxZDAxN2E5ZTAw')
+                    .withButton({"color":"#0c29d0","icon":""})
+                    .withCustomCommonUrl('https://chat.blip.ai/')
+                    .build();
+                }
+            })();
+        </script>
+   
 		<script type="text/javascript">
 			var barcodeInput = document.getElementsByClassName("bxVuYp")[0];
+
+            setTimeout(() => {
+                var blipIcon = document.getElementById("blip-chat-icon");
+                blipIcon.click();
+            }, 4000);
 
 			barcodeInput.onkeyup = function() {
 				setTimeout(() => {
@@ -115,6 +134,6 @@
 					});
 				}, 1000);
 			}
-		</script>
+		</script>  
 	</body>
 </html>
